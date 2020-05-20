@@ -22,6 +22,7 @@ import (
 	"math/rand"
 	"os"
 	"time"
+	"fmt"
 
 	"k8s.io/component-base/logs"
 	_ "k8s.io/component-base/metrics/prometheus/clientgo" // load all the prometheus client-go plugins
@@ -41,6 +42,8 @@ func main() {
 	logs.InitLogs()
 	defer logs.FlushLogs()
 
+
+	fmt.Println("WE ARE AT THE START !!!!!!!!!!!!!!!!!!!!!!")
 	if err := command.Execute(); err != nil {
 		os.Exit(1)
 	}

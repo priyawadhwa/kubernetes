@@ -626,3 +626,8 @@ bazel-release:
 	bazel shutdown || true
 	pkill ^bazel || true
 endif
+
+.PHONY: minikube-apiserver
+minikube-apiserver:
+	bazel build cmd/kube-apiserver:kube-apiserver
+	./dockerfiles/apiserver.sh
