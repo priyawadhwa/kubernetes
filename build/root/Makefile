@@ -631,3 +631,4 @@ endif
 minikube-apiserver:
 	bazel build cmd/kube-apiserver:kube-apiserver
 	./dockerfiles/apiserver.sh
+
