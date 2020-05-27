@@ -21,7 +21,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-
+	"time"
 	"gopkg.in/square/go-jose.v2/jwt"
 	"k8s.io/klog/v2"
 
@@ -97,6 +97,7 @@ func (v *legacyValidator) Validate(ctx context.Context, tokenData string, public
 	}
 
 	if v.lookup {
+		fmt.Println(time.Now(), "LOOKING UP NOW ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 		// Make sure token hasn't been invalidated by deletion of the secret
 		secret, err := v.getter.GetSecret(namespace, secretName)
 		if err != nil {

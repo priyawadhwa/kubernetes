@@ -18,7 +18,7 @@ package authenticator
 
 import (
 	"time"
-
+	"fmt"
 	"github.com/go-openapi/spec"
 
 	utilnet "k8s.io/apimachinery/pkg/util/net"
@@ -89,6 +89,7 @@ type Config struct {
 // New returns an authenticator.Request or an error that supports the standard
 // Kubernetes authentication mechanisms.
 func (config Config) New() (authenticator.Request, *spec.SecurityDefinitions, error) {
+	fmt.Println("returning new")
 	var authenticators []authenticator.Request
 	var tokenAuthenticators []authenticator.Token
 	securityDefinitions := spec.SecurityDefinitions{}

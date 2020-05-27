@@ -17,6 +17,7 @@ limitations under the License.
 package cacher
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -58,7 +59,8 @@ func newTimeBudget(stopCh <-chan struct{}) *timeBudget {
 }
 
 func (t *timeBudget) periodicallyRefresh(stopCh <-chan struct{}) {
-	ticker := time.NewTicker(time.Second)
+	fmt.Println("Same ticker for 1 seconds ~~~~~~~~~~~~~~~~~~~~~~~~")
+	ticker := time.NewTicker(1* time.Second)
 	defer ticker.Stop()
 	for {
 		select {

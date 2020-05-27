@@ -8,6 +8,8 @@ docker build -t kube-apiserver -f dockerfiles/kube-apiserver bazel-bin/cmd/kube-
 echo "Replacing current kube-apiserver image with new image ..."
 minikube ssh -- sudo sed -i 's/image:.*/image:\ kube-apiserver:latest/' /etc/kubernetes/manifests/kube-apiserver.yaml
 echo "Removing old docker container ..."
+minikube update-context || true
+kubectl delete po kube-apiserver-minikube -n kube-system
 sleep 3
 DOCKER_CONTAINER_NAME=$(minikube ssh -- docker ps --format {{.Names}} | grep k8s_kube-apiserver)
 minikube ssh -- docker stop $DOCKER_CONTAINER_NAME
